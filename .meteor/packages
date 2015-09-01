@@ -5,10 +5,12 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 less
 nemo64:bootstrap
 iron:router
 dburles:google-maps
 mdg:geolocation
+momentjs:moment
+lbee:moment-helpers
+fortawesome:fontawesome
+houston:admin

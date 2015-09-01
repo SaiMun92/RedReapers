@@ -1,0 +1,41 @@
+<template name="stats">
+
+<div class="panel panel-default">
+<h5> {{moFormat timeNow 'longDatewithtime'}} </h5>
+Number of incidents today - 0 <br>
+Number of unresolved incidents - 0 <br>
+<hr>
+<a href="{{pathFor 'report'}}"><button class="btn btn-primary"><i class="fa fa-exclamation-triangle"></i> Report incident </button></a>
+<button class="btn btn-info"><i class="fa fa-history"></i> Show history </button>
+<br>
+<br>
+</div>
+
+
+<h3> Latest Incident Reports </h3>
+
+{{#if Incidents}}
+<div class="panel-group">
+{{#each Incidents}}
+
+<div class="panel panel-primary">
+<div class="panel-heading">{{type}}
+</div>
+<div class="panel-body">
+
+ {{comment}}
+
+</div>
+<div class="panel-footer">
+<button class="btn btn-default"><i class="fa fa-map-marker"></i> Show Location </button>
+<button class="btn btn-default"><i class="fa fa-bolt"></i> Take action </button>
+</div>
+</div>
+
+
+
+{{/each}}
+</div>
+{{/if}}
+
+</template>
