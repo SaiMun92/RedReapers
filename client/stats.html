@@ -2,16 +2,21 @@
 
 <div class="panel panel-default">
 <h5> {{moFormat timeNow 'longDatewithtime'}} </h5>
-Number of incidents today - 0 <br>
-Number of unresolved incidents - 0 <br>
+Number of incidents today - {{IncidentCount}} <br>
+Number of unresolved incidents - {{UnresolvedIncidents}} <br>
 <hr>
 <a href="{{pathFor 'report'}}"><button class="btn btn-primary"><i class="fa fa-exclamation-triangle"></i> Report incident </button></a>
-<button class="btn btn-info"><i class="fa fa-history"></i> Show history </button>
+<button class="btn btn-info" id="showincidents"><i class="fa fa-history"></i>
+{{#if GetSession 'incidentview'}} Hide {{else}} Show {{/if}} Incidents </button>
+
 <br>
 <br>
+
 </div>
 
+</template>
 
+<template name="incidentview">
 <h3> Latest Incident Reports </h3>
 
 {{#if Incidents}}
@@ -19,23 +24,76 @@ Number of unresolved incidents - 0 <br>
 {{#each Incidents}}
 
 <div class="panel panel-primary">
-<div class="panel-heading">{{type}}
+<div class="panel-heading">{{type}} 
 </div>
 <div class="panel-body">
 
- {{comment}}
+
+<p> {{comment}}</p>
+
+<small>{{moFormat reportedTime 'longDatewithtime'}}</small>
 
 </div>
 <div class="panel-footer">
-<button class="btn btn-default"><i class="fa fa-map-marker"></i> Show Location </button>
+<!--
+<button class="btn btn-default" id="showlocation"><i class="fa fa-map-marker"></i> Show Location </button>
+<button class="btn btn-default" id="showpanorama"><i class="fa fa-map-marker"></i> Street View</button>-->
+<div class="btn-group" role="group" aria-label="...">
+<div class="btn-group">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <i class="fa fa-eye"></i> View
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#" id="showlocation"><i class="fa fa-map-marker"></i> &nbsp; Map View</a></li>
+    <li><a href="#" id="showpanorama"><i class="fa fa-location-arrow"></i>&nbsp; Street View</a></li>
+  </ul>
+</div>
 <button class="btn btn-default"><i class="fa fa-bolt"></i> Take action </button>
 </div>
 </div>
-
+</div>
 
 
 {{/each}}
 </div>
 {{/if}}
+
+</template>
+
+<template name="singleincidentview">
+
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3> {{SingleIncident.type}}</h3>
+Case ID:{{SingleIncident._id}}
+<br>
+</div>
+<div class="panel-body">
+<p>{{SingleIncident.comment}}</p>
+Reported On: {{moFormat SingleIncident.reportedTime 'longDatewithtime'}} <br>
+</div>
+<div class="panel-footer">
+
+<div class="btn-group" role="group" aria-label="...">
+<div class="btn-group">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <i class="fa fa-eye"></i> Mark Status
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#" id="showlocation"><i class="fa fa-check-circle-o"></i> &nbsp; Mark Verified</a></li>
+    <li><a href="#" id="showpanorama"><i class="fa fa-location-arrow"></i>&nbsp; Mark Resolved</a></li>
+  </ul>
+</div>
+<button class="btn btn-default"><i class="fa fa-bolt"></i> Take action </button>
+</div>
+
+
+
+</div>
+</div>
+
+
 
 </template>

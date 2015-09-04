@@ -10,3 +10,8 @@ setInterval(function() {
 UI.registerHelper('CurMarker', function(option){
 	return Session.get("CurMarker")[option];
 });
+
+//Universal Session Template Helper
+UI.registerHelper("GetSession",function(key){
+	return Session.get(key);
+});
