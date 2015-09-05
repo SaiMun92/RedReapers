@@ -66,7 +66,14 @@ Template.incidentview.events({
 				}));
 		panorama.setVisible(true);
 		console.log("Panorama activated");
-		}
+		},
+
+	'click #takeaction':function(){
+		console.log("Take action");
+		console.log(this);
+		Modal.show('actionModal', this);
+
+	}
 
 		
 

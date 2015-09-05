@@ -17,6 +17,7 @@ Number of unresolved incidents - {{UnresolvedIncidents}} <br>
 </template>
 
 <template name="incidentview">
+{{> autoformModals}}
 <h3> Latest Incident Reports </h3>
 
 {{#if Incidents}}
@@ -49,7 +50,9 @@ Number of unresolved incidents - {{UnresolvedIncidents}} <br>
     <li><a href="#" id="showpanorama"><i class="fa fa-location-arrow"></i>&nbsp; Street View</a></li>
   </ul>
 </div>
-<button class="btn btn-default"><i class="fa fa-bolt"></i> Take action </button>
+<button class="btn btn-default" id="takeaction"><i class="fa fa-bolt"></i> Take action </button>
+
+
 </div>
 </div>
 </div>
@@ -96,4 +99,39 @@ Reported On: {{moFormat SingleIncident.reportedTime 'longDatewithtime'}} <br>
 
 
 
+</template>
+
+<!--ACTION MODAL FOR TAKE ACTION BUTTON -->
+
+<template name="actionModal">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Case Id: {{_id}} - {{type}}</h4>
+                </div>
+
+                <div class="modal-body">
+  <center>
+                    The following actions can be taken<hr>
+                    <div class="btn-group-vertical" aria-label="...">
+<button class="btn btn-default text-left"><i class="fa fa-ambulance fa-fw"></i> &nbsp; Dispatch Ambulance </button>
+  <button class="btn btn-default text-left"> <i class="fa fa-taxi fa-fw"></i> &nbsp; Contact Police </button> 
+  <button class="btn btn-default text-left"><i class="fa fa-tty fa-fw"></i> &nbsp; Contact Relevant Authorities </button>
+      <button class="btn btn-default text-left"> <i class="fa fa-facebook fa-fw"></i>&nbsp; Broadcast to Social Media </button>
+           <button class="btn btn-default text-left"> <i class="fa fa-users fa-fw"></i>&nbsp; Notify Subscribers </button>
+                  <button class="btn btn-default text-left"><i class="fa fa-check-square-o fa-fw"></i>&nbsp; Mark Resolved </button>
+                </div>
+                <br>
+                <br>
+</center>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
 </template>
