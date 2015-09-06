@@ -15,3 +15,25 @@ UI.registerHelper('CurMarker', function(option){
 UI.registerHelper("GetSession",function(key){
 	return Session.get(key);
 });
+
+//Helper to return correct colour for incident panel
+UI.registerHelper("incidentStatusColor",function(status){
+	console.log(status);
+	var incidentStatusDict = {
+		'resolved':'success',
+		'verified':'warning',
+		'pending':'default',
+		'urgent':'primary'
+	};
+	var color = incidentStatusDict[status];
+	if (color){
+		console.log(color);
+		return color;}
+	else{
+		return 'default';
+	}
+});
+
+UI.registerHelper('equals', function (a, b) {
+  return a === b;
+});

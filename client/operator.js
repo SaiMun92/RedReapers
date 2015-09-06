@@ -19,8 +19,7 @@ Template.operator.events({
 			'type':type,
 			'comment':comment,
 			'location':location,
-			'resolved':false,
-			'verified':false
+			'status':'pending'
 		}
 
 		//Server-side call for security 

@@ -65,13 +65,24 @@ Template.incidentview.events({
 				pitch: 0
 				}));
 		panorama.setVisible(true);
-		console.log("Panorama activated");
 		},
 
 	'click #takeaction':function(){
-		console.log("Take action");
-		console.log(this);
 		Modal.show('actionModal', this);
+
+	},
+
+	'click #markverified':function(){
+		Meteor.call('markResolved',this._id,'verified');
+
+	},
+
+	'click #markresolved':function(){
+		Meteor.call('markResolved',this._id,'resolved');
+
+	},
+	'click #markurgent':function(){
+		Meteor.call('markResolved',this._id,'urgent');
 
 	}
 

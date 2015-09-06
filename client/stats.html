@@ -6,7 +6,7 @@ Number of incidents today - {{IncidentCount}} <br>
 Number of unresolved incidents - {{UnresolvedIncidents}} <br>
 <hr>
 <a href="{{pathFor 'report'}}"><button class="btn btn-primary"><i class="fa fa-exclamation-triangle"></i> Report incident </button></a>
-<button class="btn btn-info" id="showincidents"><i class="fa fa-history"></i>
+<button class="btn btn-default" id="showincidents"><i class="fa fa-history"></i>
 {{#if GetSession 'incidentview'}} Hide {{else}} Show {{/if}} Incidents </button>
 
 <br>
@@ -24,8 +24,14 @@ Number of unresolved incidents - {{UnresolvedIncidents}} <br>
 <div class="panel-group">
 {{#each Incidents}}
 
-<div class="panel panel-primary">
-<div class="panel-heading">{{type}} 
+<div class="panel panel-{{incidentStatusColor status}}">
+<div class="panel-heading">
+
+
+{{#if equals status 'resolved'}}<i class="fa fa-check"></i>{{/if}}
+{{#if equals status 'urgent'}}<i class="fa fa-exclamation-circle"></i>{{/if}}
+{{#if equals status 'verified'}}<i class="fa fa-dot-circle-o"></i>{{/if}}
+ {{type}} 
 </div>
 <div class="panel-body">
 
@@ -50,6 +56,17 @@ Number of unresolved incidents - {{UnresolvedIncidents}} <br>
     <li><a href="#" id="showpanorama"><i class="fa fa-location-arrow"></i>&nbsp; Street View</a></li>
   </ul>
 </div>
+<div class="btn-group">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <i class="fa fa-eye"></i> Status
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#" id="markverified"><i class="fa fa-check-circle-o"></i>&nbsp;Mark Verified</a></li>
+    <li><a href="#" id="markresolved"><i class="fa fa-location-arrow"></i>&nbsp;Mark Resolved</a></li>
+      <li><a href="#" id="markurgent"><i class="fa fa-exclamation-circle"></i>&nbsp;Mark Urgent</a></li>
+  </ul>
+</div>
 <button class="btn btn-default" id="takeaction"><i class="fa fa-bolt"></i> Take action </button>
 
 
@@ -64,6 +81,7 @@ Number of unresolved incidents - {{UnresolvedIncidents}} <br>
 
 </template>
 
+<!--TO BE REFACTORED --> 
 <template name="singleincidentview">
 
 <div class="panel panel-primary">
@@ -85,8 +103,8 @@ Reported On: {{moFormat SingleIncident.reportedTime 'longDatewithtime'}} <br>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#" id="showlocation"><i class="fa fa-check-circle-o"></i> &nbsp; Mark Verified</a></li>
-    <li><a href="#" id="showpanorama"><i class="fa fa-location-arrow"></i>&nbsp; Mark Resolved</a></li>
+    <li><a href="#" id="showlocation"><i class="fa fa-check-circle-o"></i>&nbsp;Mark Verified</a></li>
+    <li><a href="#" id="showpanorama"><i class="fa fa-location-arrow"></i>&nbsp;Mark Resolved</a></li>
   </ul>
 </div>
 <button class="btn btn-default"><i class="fa fa-bolt"></i> Take action </button>
