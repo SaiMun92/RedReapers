@@ -29,6 +29,7 @@ Template.operator.events({
 		console.log("Report submitted");
 		hp.value = "";
 		comment.value = "";
+		Router.go('/');
 		return false; 
 
 	}

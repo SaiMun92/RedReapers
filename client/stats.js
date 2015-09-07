@@ -23,7 +23,10 @@ Template.stats.helpers({
 	},
 
 	'UnresolvedIncidents':function(){
-		return Incidents.find().count();
+		return Incidents.find({'status':'unresolved'}).count();
+	},
+	'UrgentIncidents':function(){
+		return Incidents.find({'status':'urgent'}).count();
 	}
 
 });

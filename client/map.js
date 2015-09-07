@@ -1,5 +1,11 @@
 var MAP_ZOOM = 15;
 
+//dictionary object for colourized markers according to incident status
+iconUrlDict = {
+        'resolved':'green-dot',
+        'urgent':'red-dot',
+        'verified':'yellow-dot',
+        'pending':'blue-dot'}
 
 
 Template.map.helpers({  
@@ -57,30 +63,18 @@ Template.map.onCreated(function() {
                         title:incident.type,
                         map: GoogleMaps.maps.map.instance
                     });
-                        marker.addListener('click',function(){
-                          console.log("Marker clicked");
-                          console.log(incident.type);
-                          //Zooms into marker location! 
-                          var loc = new google.maps.LatLng(lat, lng)
-                          map.instance.setZoom(15);
-                          map.instance.setCenter(loc);
-                          /*
-                          // Street View FEATURE NOT IN USE YET
-                          panorama = map.instance.getStreetView();
-                          map.instance.setStreetView(panorama);
-                          if (Session.get("panorama")==false){
-                                panorama.setPosition(loc);
-                                panorama.setPov(({
-                                  heading: 265,
-                                  pitch: 0
-                                  }));
-                                panorama.setVisible(true);
-                                console.log("Panorama activated");
-                          }*/
-                          
-                          //Set Single Incident View to target incident
-                          Session.set("SingleIncidentView",incident._id);
-                          Session.set("incidentview",false); //Close multi-incident view
+
+                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/'+iconUrlDict[incident.status]+'.png');
+                    marker.addListener('click',function(){
+                      //Zooms into marker location! 
+                      var loc = new google.maps.LatLng(lat, lng)
+                      map.instance.setZoom(15);
+                      map.instance.setCenter(loc);
+                    
+                    //Set Single Incident View to target incident
+                    //This might be deprecated soon :) 
+                    Session.set("SingleIncidentView",incident._id);
+                    Session.set("incidentview",false); //Close multi-incident view
 
                         });
                        

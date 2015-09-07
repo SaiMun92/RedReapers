@@ -3,7 +3,10 @@
 <div class="panel panel-default">
 <h5> {{moFormat timeNow 'longDatewithtime'}} </h5>
 Number of incidents today - {{IncidentCount}} <br>
-Number of unresolved incidents - {{UnresolvedIncidents}} <br>
+Number of Urgent Incidents - {{UrgentIncidents}} <br>
+<!--
+Number of Unresolved incidents - {{UnresolvedIncidents}} <br>-->
+
 <hr>
 <a href="{{pathFor 'report'}}"><button class="btn btn-primary"><i class="fa fa-exclamation-triangle"></i> Report incident </button></a>
 <button class="btn btn-default" id="showincidents"><i class="fa fa-history"></i>
@@ -47,7 +50,7 @@ Number of unresolved incidents - {{UnresolvedIncidents}} <br>
 <button class="btn btn-default" id="showpanorama"><i class="fa fa-map-marker"></i> Street View</button>-->
 <div class="btn-group" role="group" aria-label="...">
 <div class="btn-group">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     <i class="fa fa-eye"></i> View
     <span class="caret"></span>
   </button>
@@ -57,17 +60,23 @@ Number of unresolved incidents - {{UnresolvedIncidents}} <br>
   </ul>
 </div>
 <div class="btn-group">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     <i class="fa fa-eye"></i> Status
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    {{#unless equals status 'verified'}}
     <li><a href="#" id="markverified"><i class="fa fa-check-circle-o"></i>&nbsp;Mark Verified</a></li>
+    {{/unless}}
+    {{#unless equals status 'resolved'}}
     <li><a href="#" id="markresolved"><i class="fa fa-location-arrow"></i>&nbsp;Mark Resolved</a></li>
+    {{/unless}}
+    {{#unless equals status 'urgent'}}
       <li><a href="#" id="markurgent"><i class="fa fa-exclamation-circle"></i>&nbsp;Mark Urgent</a></li>
+      {{/unless}}
   </ul>
 </div>
-<button class="btn btn-default" id="takeaction"><i class="fa fa-bolt"></i> Take action </button>
+<button class="btn btn-default btn-sm" id="takeaction"><i class="fa fa-bolt"></i> Take action </button>
 
 
 </div>
