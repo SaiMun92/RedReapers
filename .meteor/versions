@@ -57,7 +57,10 @@ nemo64:bootstrap-data@3.3.5
 npm-bcrypt@0.7.8_2
 observe-sequence@1.0.6
 ordered-dict@1.0.3
+peerlibrary:blocking@0.5.2
+peerlibrary:xml2js@0.4.8_1
 peppelg:bootstrap-3-modal@1.0.3
+percolate:synced-cron@1.2.2
 raix:handlebar-helpers@0.2.4
 random@1.0.3
 reactive-dict@1.1.0

@@ -6,18 +6,18 @@ Template.operator.events({
 		event.stopPropagation();
 
 		//getting input fields
-		var hp = template.find("#hp").value;
-		var type = template.find('#type').value;
-		var comment = template.find('#comment').value;
+		var hp = template.find("#hp");
+		var type = template.find('#type');
+		var comment = template.find('#comment');
 		var location = Session.get("CurMarker");
 		var now = new moment();	//timestamp value for reported time
 
 		//Creates incident object
 		var incident = { 
 			'reportedTime':now._d,
-			'contact':hp,
-			'type':type,
-			'comment':comment,
+			'contact':hp.value,
+			'type':type.value,
+			'comment':comment.value,
 			'location':location,
 			'status':'pending'
 		}
