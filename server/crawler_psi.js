@@ -45,6 +45,7 @@ crawlPSI = function(){
 		var res = JSON.stringify(res);	//converts to JSON string then to JSON object. Do I really need 2 steps for this? :(
 		var obj = JSON.parse(res);
 		var region = obj["channel"]['item'][0]['region']; // assign variable once, save computational costs? 
+		var AllRegionsRecord = [];
 
 		for(var i=0;i<region.length;i++){		//enumerate Regions from XML-ish Json data. Currently 6 regions. 
 			
@@ -55,7 +56,7 @@ crawlPSI = function(){
 				region:region[i]['id'][0],
 				lat:region[i]['latitude'][0],
 				lng:region[i]['longitude'][0],
-				timestamp:timestamp
+				timestamp:timestamp._d
 			};
 
 			var readingObj = region[i]['record'][0]['reading']; 
@@ -72,19 +73,21 @@ crawlPSI = function(){
 			PSIrecord['reading'] = newreadinglist;
 			//Parsing and tracing this messy json format officially caused a headache 
 			
-			//TODO:Check for duplicate entries
-			PSI.insert(PSIrecord);		//Insert PSIrecord into Mongo
+
+			//One record per crawl, all regions in one collection.
+			//Is this better? I think so. for now. I hope :) 
+			AllRegionsRecord.push(PSIrecord);
 
 			
 			}
-
+			PSI.insert(AllRegionsRecord);		//Insert PSIrecord into Mongo
 	
 									});
 	
 };
 
 convertFuckingDates = function(){
-	//I'm damn pissed because I wiped the database by mistake. FUCK MY LIFE
+	//I'm damn pissed because I wiped the database by mistake. 
 	//Because of stupid time format
 	//Someone needs to refactor this name, i'm too pissed atm
 	var allPSI = PSI.find().fetch();
