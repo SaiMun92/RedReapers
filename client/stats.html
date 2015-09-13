@@ -14,8 +14,11 @@ Number of Unresolved incidents - {{UnresolvedIncidents}} <br>-->
 
 <br>
 <br>
-
 </div>
+
+<!--{{>psiVIEW}}-->
+
+
 
 </template>
 
@@ -128,6 +131,22 @@ Reported On: {{moFormat SingleIncident.reportedTime 'longDatewithtime'}} <br>
 
 </template>
 
+<!--View component to display PSI-->
+
+<template name="psiVIEW">
+<div class="panel panel-default">
+
+<h3> Current Haze Status </h3>
+
+{{northReadings}}
+<!--
+<b> North: </b> {{northReadings.reading.[0].value}}
+{{northReadings.timestamp}}-->
+
+</div>
+</template>
+
+
 <!--ACTION MODAL FOR TAKE ACTION BUTTON -->
 
 <template name="actionModal">
@@ -162,3 +181,4 @@ Reported On: {{moFormat SingleIncident.reportedTime 'longDatewithtime'}} <br>
     </div>
     </div>
 </template>
+

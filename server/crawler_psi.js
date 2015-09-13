@@ -47,11 +47,15 @@ crawlPSI = function(){
 		var region = obj["channel"]['item'][0]['region']; // assign variable once, save computational costs? 
 
 		for(var i=0;i<region.length;i++){		//enumerate Regions from XML-ish Json data. Currently 6 regions. 
+			
+			//Convert to Moment Date time
+			var timestamp = moment(region[i]['record'][0]['$']['timestamp'], "YYYYMMDDHHmmss");
+
 			var PSIrecord={				
 				region:region[i]['id'][0],
 				lat:region[i]['latitude'][0],
 				lng:region[i]['longitude'][0],
-				timestamp:region[i]['record'][0]['$']['timestamp'],
+				timestamp:timestamp
 			};
 
 			var readingObj = region[i]['record'][0]['reading']; 
@@ -79,11 +83,29 @@ crawlPSI = function(){
 	
 };
 
+convertFuckingDates = function(){
+	//I'm damn pissed because I wiped the database by mistake. FUCK MY LIFE
+	//Because of stupid time format
+	//Someone needs to refactor this name, i'm too pissed atm
+	var allPSI = PSI.find().fetch();
+	for(var i=0;i<allPSI.length;i++){
+		console.log(allPSI[i].timestamp);
+		var a = moment(allPSI[i].timestamp, "YYYYMMDDHHmmss");
+		console.log(a._d);
+		PSI.update(allPSI[i]._id,{$set:{timestamp:a._d}});
+
+	}
+
+}
+
+
+
 SyncedCron.start();
 
 Meteor.startup(function() {
 	//this should be run periodically, but this startup function here is to test the functionality
 	//In production, please use SyncedCron.start()
 		//crawlPSI();
+		//convertFuckingDates();
  
 });
