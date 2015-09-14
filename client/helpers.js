@@ -37,3 +37,29 @@ UI.registerHelper("incidentStatusColor",function(status){
 UI.registerHelper('equals', function (a, b) {
   return a === b;
 });
+
+UI.registerHelper('MeteorUserEmail',function(){
+	var user = Meteor.user();
+	if (user.emails[0].address){
+		return user.emails[0].address;
+	}
+	else
+		return false;
+
+});
+
+UI.registerHelper("FacebookUserId",function(){
+	var user = Meteor.user();
+	console.log(user)
+	/*
+	if (user.services.facebook.id){
+		console.log(user.services.facebook.id);
+		return user.services.facebook.id;
+	}
+	else{
+		return false;
+	}*/
+	return false;
+
+
+});

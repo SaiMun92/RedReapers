@@ -23,3 +23,9 @@ jquery
 percolate:synced-cron
 http
 peerlibrary:xml2js
+accounts-ui
+accounts-password
+useraccounts:bootstrap
+accounts-facebook
+service-configuration
+accounts-twitter

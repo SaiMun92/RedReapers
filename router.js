@@ -13,3 +13,6 @@ Router.route('/operator',function(){
 	this.render('operator');
 });
 
+Router.route('/usersystem',function(){
+	this.render('usersystem');
+});

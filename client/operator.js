@@ -19,7 +19,8 @@ Template.operator.events({
 			'type':type.value,
 			'comment':comment.value,
 			'location':location,
-			'status':'pending'
+			'status':'pending',
+			'reportedBy':Meteor.userId()
 		}
 
 		//Server-side call for security 

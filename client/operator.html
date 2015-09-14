@@ -2,6 +2,9 @@
 
 <div class="col-lg-5">
 
+{{#if currentUser}}
+
+
 <h1> <center> Operator Dashboard </center></h1>
 <form class="form-horizontal">
 <br>
@@ -41,9 +44,17 @@
 <center>
 <button class="btn btn-success" id="new-report"> Submit Report</button></center>
 </form>
+{{else}}
 
+{{> atForm}}
+
+
+
+{{/if}}
 
 </div>
+
+
 <div class="col-lg-7">
 {{>map}}
 </div>
