@@ -8,7 +8,10 @@ Meteor.publish('All-Incidents',function(){
 
 Meteor.publish('All-Haze',function(){
 	console.log("Publishing haze");
-	return PSI.find({},{$sort:{natural:-1}},{limit:12});
+	 var today = moment();
+	 var yesterday = today.add(-1,"days");
+	 console.log(yesterday);
+	return PSI.find({"timestamp" : { $gte : yesterday._d }});
 });
 
 

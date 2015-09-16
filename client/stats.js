@@ -3,7 +3,7 @@ mo.configure({
   formatTokens: {
     'shortDate': 'D MMM YY', //3 Jan 15
     'longDate': 'Do [of] MMMM[,] YYYY', //3rd of January, 2015
-    'longDatewithtime': 'Do [of] MMMM[,] YYYY hh:mm:ss'
+    'longDatewithtime': 'Do [of] MMMM[,] YYYY HH:mm:ss'
   }
 });
 
@@ -113,19 +113,12 @@ Template.singleincidentview.events({
 Template.psiVIEW.helpers({
 
 
-	'northReadings':function(){
-		console.log("North Readings");
-		var north = PSI.find({'region':'rNO'},{$sort:{natural:-1}, limit:1}).fetch();
-		console.log(north);
-		/*
-		if (north){
-		console.log(north);
-		var t = north['timestamp'];
-		console.log(t);
-		var a = moment(t, "YYYYDDMMhhmmss");
-		console.log(a._d);
-		console.log(a.fromNow());
-		return north;*/
+	'latestPSI':function(){
+		console.log("PSI");
+		var latestReading = PSI.find().fetch().reverse();
+		console.log(PSI.find().count());
+		console.log(latestReading[0]);
+		return latestReading;
 
 	}
 

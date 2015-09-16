@@ -16,7 +16,7 @@ Number of Unresolved incidents - {{UnresolvedIncidents}} <br>-->
 <br>
 </div>
 
-<!--{{>psiVIEW}}-->
+{{>psiVIEW}}
 
 
 
@@ -137,8 +137,27 @@ Reported On: {{moFormat SingleIncident.reportedTime 'longDatewithtime'}} <br>
 <div class="panel panel-default">
 
 <h3> Current Haze Status </h3>
+<h5> {{moFormat latestPSI.[0].[0].timestamp 'longDatewithtime'}} </h5>
+Central Region - {{latestPSI.[0].[2].reading.[0].value}} <br>
+North Region - {{latestPSI.[0].[0].reading.[0].value}} <br>
+East Region - {{latestPSI.[0].[3].reading.[0].value}} <br>
+West Region - {{latestPSI.[0].[4].reading.[0].value}} <br>
+South Region - {{latestPSI.[0].[5].reading.[0].value}} <br>
+<!--National Reporting Center- {{latestPSI.[0].[1].reading.[0].value}} <br>-->
+<br>
 
-{{northReadings}}
+
+
+<!--This should be kept for detailed analytics-->
+<!--
+{{latestPSI.[0].[0].reading.[1].type}} - {{latestPSI.[0].[0].reading.[1].value}} <br>
+{{latestPSI.[0].[0].reading.[2].type}} - {{latestPSI.[0].[0].reading.[2].value}} <br>
+{{latestPSI.[0].[0].reading.[3].type}} - {{latestPSI.[0].[0].reading.[3].value}} <br>
+{{latestPSI.[0].[0].reading.[4].type}} - {{latestPSI.[0].[0].reading.[4].value}} <br>
+{{latestPSI.[0].[0].reading.[5].type}}- {{latestPSI.[0].[0].reading.[5].value}} <br>
+{{latestPSI.[0].[0].reading.[6].type}} - {{latestPSI.[0].[0].reading.[6].value}} <br>-->
+
+
 <!--
 <b> North: </b> {{northReadings.reading.[0].value}}
 {{northReadings.timestamp}}-->

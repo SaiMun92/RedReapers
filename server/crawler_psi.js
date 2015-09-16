@@ -86,10 +86,9 @@ crawlPSI = function(){
 	
 };
 
-convertFuckingDates = function(){
+convertDates = function(){
 	//I'm damn pissed because I wiped the database by mistake. 
 	//Because of stupid time format
-	//Someone needs to refactor this name, i'm too pissed atm
 	var allPSI = PSI.find().fetch();
 	for(var i=0;i<allPSI.length;i++){
 		console.log(allPSI[i].timestamp);
@@ -98,6 +97,17 @@ convertFuckingDates = function(){
 		PSI.update(allPSI[i]._id,{$set:{timestamp:a._d}});
 
 	}
+
+},
+
+//This is a one-off function. Do not run this. 
+appendTimestamp = function(){
+	var cursor = PSI.find();
+	cursor.forEach(function(doc){
+  			var timestamp = doc[0].timestamp;
+  			console.log(timestamp);
+  			PSI.update(doc._id,{$set:{timestamp:timestamp}});
+	});
 
 }
 
@@ -109,6 +119,7 @@ Meteor.startup(function() {
 	//this should be run periodically, but this startup function here is to test the functionality
 	//In production, please use SyncedCron.start()
 		//crawlPSI();
-		//convertFuckingDates();
+		//convertDates();
+		//appendTimestamp();
  
 });
