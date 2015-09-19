@@ -10,7 +10,6 @@ Meteor.publish('All-Haze',function(){
 	console.log("Publishing haze");
 	 var today = moment();
 	 var yesterday = today.add(-1,"days");
-	 console.log(yesterday);
 	return PSI.find({"timestamp" : { $gte : yesterday._d }});
 });
 

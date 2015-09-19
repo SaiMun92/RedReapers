@@ -6,4 +6,5 @@
   });
 
 //Session Defaults
-  Session.setDefault("incidentview",false);
+Session.setDefault("incidentview",false);
+Session.setDefault("psiView",true);

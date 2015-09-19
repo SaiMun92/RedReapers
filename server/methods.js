@@ -5,7 +5,7 @@ Meteor.methods({
 		console.log("Incident reported on server side");
 	},
 
-	'markResolved':function(id,status){
+	'markStatus':function(id,status){
 		Incidents.update(id,{$set: {status: status}});
 		console.log("Incident marked resolved on server side");
 

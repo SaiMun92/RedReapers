@@ -27,7 +27,7 @@ UI.registerHelper("incidentStatusColor",function(status){
 	};
 	var color = incidentStatusDict[status];
 	if (color){
-		console.log(color);
+		//console.log(color);
 		return color;}
 	else{
 		return 'default';

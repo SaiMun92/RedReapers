@@ -1,0 +1,18 @@
+<template name="search">
+
+{{#if getIncidents}}
+
+<h1> Search Results </h1>
+{{#each getIncidents}}
+
+{{{type}}} <br>
+
+{{{comment}}}
+{{/each}}
+
+
+{{/if}}
+
+
+
+</template>

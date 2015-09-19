@@ -77,6 +77,7 @@ crawlPSI = function(){
 			//One record per crawl, all regions in one collection.
 			//Is this better? I think so. for now. I hope :) 
 			AllRegionsRecord.push(PSIrecord);
+			AllRegionsRecord['timestamp'] = timestamp._d;
 
 			
 			}
@@ -105,7 +106,6 @@ appendTimestamp = function(){
 	var cursor = PSI.find();
 	cursor.forEach(function(doc){
   			var timestamp = doc[0].timestamp;
-  			console.log(timestamp);
   			PSI.update(doc._id,{$set:{timestamp:timestamp}});
 	});
 

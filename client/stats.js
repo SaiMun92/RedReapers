@@ -13,7 +13,19 @@ mo.configure({
 Template.stats.helpers({
 
 	'Incidents':function(){
-		return Incidents.find().fetch();
+		var searchResults = IncidentSearch.getData({
+				    transform: function(matchText, regExp) {
+				    return matchText.replace(regExp, "$&")
+				    },
+				    sort: {isoScore: -1}
+				    });
+	   if (searchResults){
+	   	Session.set("incidentview",true);
+	   	console.log(searchResults);
+	   	return searchResults;
+	   } 
+	   else{
+		return Incidents.find().fetch();}
 	},
 
 	'IncidentCount':function(){
@@ -44,18 +56,45 @@ Template.stats.events({
 Template.incidentview.helpers({
 
 	'Incidents':function(){
-		return Incidents.find({},{sort: {reportedTime: -1}}).fetch();
-	}
+		var searchResults = IncidentSearch.getData({
+			    transform: function(matchText, regExp) {
+			    return matchText.replace(regExp, "$&")
+			    },
+			    sort: {isoScore: -1}
+			    });
+	   if (searchResults){
+	   		console.log(searchResults);
+		   	if (searchResults.length>=1){
+		   		return searchResults;}
+		   	else{
+		   		console.log("Returning ordinary incidents");
+		   		return Incidents.find({},{sort: {reportedTime: -1}}).fetch();
+		   	}
+	   } 
+	   else{
+	   	console.log("Returning ordinary incidents");
+		return Incidents.find({},{sort: {reportedTime: -1}}).fetch();}
+	},
+
+
+
 });
 
 Template.incidentview.events({
+
+	'keyup #search-box': _.throttle(function(e) {
+		console.log("searching..");
+		var text = $(e.target).val().trim();
+		IncidentSearch.search(text);
+		}, 200),
+
 
 	'click #showlocation':function(){
 		console.log("Clicked");
 		panorama.setVisible(false);
 		GoogleMaps.maps.map.instance.setZoom(15);
 		GoogleMaps.maps.map.instance.setCenter(this.location);
-		console.log(this.location);
+		//console.log(this.location);
 			},
 
 	'click #showpanorama':function(){
@@ -76,16 +115,21 @@ Template.incidentview.events({
 	},
 
 	'click #markverified':function(){
-		Meteor.call('markResolved',this._id,'verified');
+		Meteor.call('markStatus',this._id,'verified');
+		IncidentSearch.search(IncidentSearch.getCurrentQuery());
 
 	},
 
 	'click #markresolved':function(){
-		Meteor.call('markResolved',this._id,'resolved');
+		Meteor.call('markStatus',this._id,'resolved');
+		IncidentSearch.search(IncidentSearch.getCurrentQuery());
 
 	},
 	'click #markurgent':function(){
-		Meteor.call('markResolved',this._id,'urgent');
+		Meteor.call('markStatus',this._id,'urgent');
+		var text = IncidentSearch.getCurrentQuery();
+		console.log("Text:"+text);
+		IncidentSearch.search("");
 
 	}
 
@@ -114,15 +158,23 @@ Template.psiVIEW.helpers({
 
 
 	'latestPSI':function(){
-		console.log("PSI");
 		var latestReading = PSI.find().fetch().reverse();
-		console.log(PSI.find().count());
-		console.log(latestReading[0]);
 		return latestReading;
 
-	}
+	},
+
 
 	
+
+
+});
+
+Template.psiVIEW.events({
+
+	'click #closePSI':function(){
+		Session.set("psiView",false);
+	}
+
 
 
 });
