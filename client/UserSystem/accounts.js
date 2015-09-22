@@ -45,7 +45,7 @@ AccountsTemplates.configure({
     showResendVerificationEmailLink: false,
 
     // Client-side Validation
-    continuousValidation: false,
+    continuousValidation: true,
     negativeFeedback: false,
     negativeValidation: true,
     positiveValidation: true,

@@ -13,14 +13,16 @@ mo.configure({
 Template.stats.helpers({
 
 	'Incidents':function(){
+		/*
 		var searchResults = IncidentSearch.getData({
 				    transform: function(matchText, regExp) {
 				    return matchText.replace(regExp, "$&")
 				    },
 				    sort: {isoScore: -1}
-				    });
+				    });*/
+	//Removed search temporarily
+		var searchResults = undefined;
 	   if (searchResults){
-	   	Session.set("incidentview",true);
 	   	console.log(searchResults);
 	   	return searchResults;
 	   } 
@@ -56,24 +58,9 @@ Template.stats.events({
 Template.incidentview.helpers({
 
 	'Incidents':function(){
-		var searchResults = IncidentSearch.getData({
-			    transform: function(matchText, regExp) {
-			    return matchText.replace(regExp, "$&")
-			    },
-			    sort: {isoScore: -1}
-			    });
-	   if (searchResults){
-	   		console.log(searchResults);
-		   	if (searchResults.length>=1){
-		   		return searchResults;}
-		   	else{
-		   		console.log("Returning ordinary incidents");
-		   		return Incidents.find({},{sort: {reportedTime: -1}}).fetch();
-		   	}
-	   } 
-	   else{
+	
 	   	console.log("Returning ordinary incidents");
-		return Incidents.find({},{sort: {reportedTime: -1}}).fetch();}
+		return Incidents.find({},{sort: {reportedTime: -1}}).fetch();
 	},
 
 
@@ -85,7 +72,7 @@ Template.incidentview.events({
 	'keyup #search-box': _.throttle(function(e) {
 		console.log("searching..");
 		var text = $(e.target).val().trim();
-		IncidentSearch.search(text);
+		//IncidentSearch.search(text);
 		}, 200),
 
 
@@ -117,12 +104,20 @@ Template.incidentview.events({
 	'click #markverified':function(){
 		Meteor.call('markStatus',this._id,'verified');
 		IncidentSearch.search(IncidentSearch.getCurrentQuery());
+		var text = IncidentSearch.getCurrentQuery();
+		console.log("Text:"+text);
+		IncidentSearch.search("");
+		IncidentSearch.search(text);
 
 	},
 
 	'click #markresolved':function(){
 		Meteor.call('markStatus',this._id,'resolved');
 		IncidentSearch.search(IncidentSearch.getCurrentQuery());
+		var text = IncidentSearch.getCurrentQuery();
+		console.log("Text:"+text);
+		IncidentSearch.search("");
+		IncidentSearch.search(text);
 
 	},
 	'click #markurgent':function(){
@@ -130,6 +125,7 @@ Template.incidentview.events({
 		var text = IncidentSearch.getCurrentQuery();
 		console.log("Text:"+text);
 		IncidentSearch.search("");
+		IncidentSearch.search(text);
 
 	}
 

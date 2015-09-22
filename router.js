@@ -16,3 +16,7 @@ Router.route('/operator',function(){
 Router.route('/usersystem',function(){
 	this.render('usersystem');
 });
+
+Router.route('/claimrole',function(){
+	this.render('claimrole');
+});

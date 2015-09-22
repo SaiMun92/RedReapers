@@ -1,0 +1,24 @@
+<template name="claimrole">
+<div class="col-lg-6 col-lg-offset-3 text-center">
+{{#if currentUser}}
+<h3> Claim Roles </h3>
+<div class="well">
+<i class="fa fa-exclamation-circle"></i> Key in the password given to you by your organization. Your designated role
+will be automatically assigned to you. 
+
+</div>
+<div class="form-group">
+<label for="claimrole"> Password: </label>
+<input type="password" class="form-control" id="password"></div>
+<button class="btn btn-success btn-lg" id="claimbutton">  <i class="fa fa-smile-o"> </i> Claim Role </button>
+
+
+{{else}}
+
+{{>atForm}}
+
+{{/if}}
+
+</div>
+
+</template>

@@ -7,8 +7,14 @@ Meteor.methods({
 
 	'markStatus':function(id,status){
 		Incidents.update(id,{$set: {status: status}});
-		console.log("Incident marked resolved on server side");
+		console.log("Incident marked as" + status + "on server side");
 
+	},
+
+	'SetRoles':function(user){
+		console.log("Assigning Roles to:"+user._id);
+		Roles.setUserRoles(user, ['operator','admin']);
+		console.log(user._id + " Set as Operator/admin");
 	}
 
 

@@ -10,19 +10,3 @@ IncidentSearch = new SearchSource('incident', fields, options);
 
 
 
-Template.search.helpers({
-  getIncidents: function() {
-    return IncidentSearch.getData({
-    transform: function(matchText, regExp) {
-    return matchText.replace(regExp, "$&")
-    },
-    sort: {isoScore: -1}
-    });
-},
-
-  isLoading: function() {
-    return IncidentSearch.getStatus().loading;
-  },
-
-});
-

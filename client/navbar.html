@@ -71,7 +71,9 @@
         	
  <span class="caret"></span></a>
           <ul class="dropdown-menu">
-          	<li><a href="{{pathFor 'operator'}}"><i class="fa fa-desktop"></i> &nbsp; Operator Dashboard </a></li>
+
+          {{#if isInRole 'operator'}}
+          	<li><a href="{{pathFor 'operator'}}"><i class="fa fa-desktop"></i> &nbsp; Operator Dashboard </a></li>{{/if}}
             <li><a href="#"><i class="fa fa-bell-o"></i> &nbsp; Notifications </a></li>
             <li><a href="#" id="logout"><i class="fa fa-sign-out"></i> &nbsp; Logout </a></li>
        
