@@ -27,7 +27,8 @@ accounts-ui
 accounts-password
 useraccounts:bootstrap
 accounts-facebook
-service-configuration
 accounts-twitter
 meteorhacks:search-source
 alanning:roles
+service-configuration
+kevohagan:sweetalert
