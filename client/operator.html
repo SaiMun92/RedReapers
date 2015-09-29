@@ -1,12 +1,14 @@
 <template name="operator">
 
-<div class="col-lg-4">
+<div class="col-lg-4 operator-dashboard">
 
 {{#if currentUser}}
+{{#if isInRole 'operator'}}
 <br>
 <br>
 
 <h1> <center> Operator Dashboard </center></h1>
+<div class="well">
 <form class="form-horizontal">
 <br>
 <div class="form-group margin-bottom">
@@ -45,10 +47,24 @@
 <center>
 <button class="btn btn-success" id="new-report"> Submit Report</button></center>
 </form>
+</div>
+<br>
+<div class="well">
+
+{{>incidentview}}
+</div>
+
+{{/if}}
 
 {{else}}
 
-{{> atForm}}
+<br>
+<br>
+<br>
+<div class="well text-center">
+<p> <i class="fa fa-exclamation-triangle"></i> You need to be an operator to access this page!</p>
+<a href="{{pathFor 'usersystem'}}"> <button class="btn btn-primary"> Sign-in </button></a>
+</div>
 
 
 

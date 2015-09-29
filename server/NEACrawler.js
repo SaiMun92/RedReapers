@@ -88,8 +88,6 @@ crawlPSI = function(){
 };
 
 convertDates = function(){
-	//I'm damn pissed because I wiped the database by mistake. 
-	//Because of stupid time format
 	var allPSI = PSI.find().fetch();
 	for(var i=0;i<allPSI.length;i++){
 		console.log(allPSI[i].timestamp);
@@ -102,6 +100,7 @@ convertDates = function(){
 },
 
 //This is a one-off function. Do not run this. 
+//A utility method for internal usage
 appendTimestamp = function(){
 	var cursor = PSI.find();
 	cursor.forEach(function(doc){

@@ -8,6 +8,7 @@ Meteor.publish('All-Incidents',function(){
 Meteor.publish('All-Haze',function(){
 	 var today = moment();
 	 var yesterday = today.add(-1,"days");
+   // Do not send all PSI data unless requested to! 
 	return PSI.find({"timestamp" : { $gte : yesterday._d }});
 });
 
@@ -20,3 +21,4 @@ Meteor.publish("userData", function () {
     this.ready();
   }
 });
+

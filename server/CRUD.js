@@ -11,6 +11,11 @@ Meteor.methods({
 
 	},
 
+	'insertSubscriber':function(subscriberObj){
+		Subscribers.insert(subscriberObj);
+		console.log("Added subscriber on server side");
+	},
+
 	'SetRoles':function(user){
 		console.log("Assigning Roles to:"+user._id);
 		Roles.setUserRoles(user, ['operator','admin']);

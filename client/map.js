@@ -44,6 +44,7 @@ Template.map.helpers({
 Template.map.onCreated(function() {  
   GoogleMaps.ready('map', function(map) {
     panorama = GoogleMaps.maps.map.instance.getStreetView();
+
     //Add markers to all incidents
      Meteor.autorun(function() {
             
@@ -71,10 +72,9 @@ Template.map.onCreated(function() {
                       map.instance.setZoom(15);
                       map.instance.setCenter(loc);
                     
-                    //Set Single Incident View to target incident
-                    //This might be deprecated soon :) 
+                    //SingleIncidentView now merged with incidentviews
                     Session.set("SingleIncidentView",incident._id);
-                    Session.set("incidentview",false); //Close multi-incident view
+                    Session.set("incidentview",true); 
 
                         });
                        

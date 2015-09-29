@@ -1,4 +1,5 @@
 <template name="report">
+
 <div class="col-lg-6 col-lg-offset-3">
 <h1><center>  Make a report </center> </h1>
 <div class="well">
@@ -14,7 +15,6 @@
 <option>Dengue</option>
 <option>Haze</option>
 <option>Crime</option>
-<option>Rape/Molest</option>
 <option>Safety Hazards</option>
 </select>
 </div>
@@ -22,24 +22,24 @@
 
 <div class="form-group margin-bottom">
 <label for="usr" class="control-label col-lg-2">Your Name:</label>
-<div class="col-lg-10"> <input type="text" class="form-control" id="usr"></div>
+<div class="col-lg-10"> <input type="text" class="form-control" id="usr" placeholder="Full name"></div>
 </div>
 
 
 <div class="form-group margin-bottom">
 <label for="hp" class="control-label col-lg-2 ">Contact number:</label>
-<div class="col-lg-10"> <input type="number" class="form-control" id="hp"></div>
+<div class="col-lg-10"> <input type="number" class="form-control" id="hp" placeholder="Your contact"></div>
 </div>
 
 <div class="form-group margin-bottom">
 <label for="location" class="control-label col-lg-2 ">Location:</label>
-<div class="col-lg-10"> <input type="number" class="form-control" id="location"></div>
+<div class="col-lg-10"> <input type="number" class="form-control" id="location" placeholder="Describe the location, exact names or postal code"></div>
 </div>
 
 
 <div class="form-group margin-bottom">
   <label for="comment" class="control-label col-lg-2">Description of Incident:</label>
-  <div class="col-lg-10"><textarea class="form-control" rows="5" id="comment"></textarea></div>
+  <div class="col-lg-10"><textarea class="form-control" rows="5" id="comment" placeholder="Explain in detail what happened"></textarea></div>
 </div>
 
 

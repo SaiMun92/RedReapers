@@ -12,23 +12,6 @@ mo.configure({
 
 Template.stats.helpers({
 
-	'Incidents':function(){
-		/*
-		var searchResults = IncidentSearch.getData({
-				    transform: function(matchText, regExp) {
-				    return matchText.replace(regExp, "$&")
-				    },
-				    sort: {isoScore: -1}
-				    });*/
-	//Removed search temporarily
-		var searchResults = undefined;
-	   if (searchResults){
-	   	console.log(searchResults);
-	   	return searchResults;
-	   } 
-	   else{
-		return Incidents.find().fetch();}
-	},
 
 	'IncidentCount':function(){
 		var now = moment();
@@ -58,8 +41,12 @@ Template.stats.events({
 Template.incidentview.helpers({
 
 	'Incidents':function(){
-	
-	   	console.log("Returning ordinary incidents");
+
+
+	   	//If there is a single target incident
+   	 	if(Session.get('SingleIncidentView')){
+   			return Incidents.find({'_id':Session.get('SingleIncidentView')}).fetch();
+   	}
 		return Incidents.find({},{sort: {reportedTime: -1}}).fetch();
 	},
 
@@ -133,21 +120,6 @@ Template.incidentview.events({
 
 });
 
-Template.singleincidentview.helpers({
-
-	'SingleIncident':function(){
-		var id = Session.get("SingleIncidentView");
-		if (id){
-		return Incidents.findOne(id);}
-	}
-
-});
-
-Template.singleincidentview.events({
-
-
-
-});
 
 
 Template.psiVIEW.helpers({

@@ -48,6 +48,12 @@
             <li><a href="#">One more separated link</a></li>-->
           </ul>
         </li>
+{{#if isInRole 'operator'}}
+ <li><a href="{{pathFor 'operator'}}"><i class="fa fa-tachometer"></i> Ops Dashboard</a></li>
+
+{{else}}
+        <li><a href="{{pathFor 'subscribe'}}"><i class="fa fa-rss"></i> Subscribe</a></li>
+{{/if}}
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
@@ -73,8 +79,7 @@
           <ul class="dropdown-menu">
 
           {{#if isInRole 'operator'}}
-          	<li><a href="{{pathFor 'operator'}}"><i class="fa fa-desktop"></i> &nbsp; Operator Dashboard </a></li>{{/if}}
-            <li><a href="#"><i class="fa fa-bell-o"></i> &nbsp; Notifications </a></li>
+          	<li><a href="{{pathFor 'operator'}}"><i class="fa fa-tachometer"></i> &nbsp; Operator Dashboard </a></li>{{/if}}
             <li><a href="#" id="logout"><i class="fa fa-sign-out"></i> &nbsp; Logout </a></li>
        
           </ul>
@@ -83,7 +88,7 @@
 
         </li>
         {{else}}
-        	    <li><a href="{{pathFor 'usersystem'}}">Login </a></li>
+        	    <li><a href="{{pathFor 'usersystem'}}"> <i class="fa fa-user"></i> Login </a></li>
 
         	{{/if}}
 

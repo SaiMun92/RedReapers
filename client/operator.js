@@ -27,7 +27,7 @@ Template.operator.events({
 		//Passes Incident Object to Server for DB insertion
 		//Refer to methods.js for server-side insertion code. 
 		Meteor.call("insertIncident",incident);
-		console.log("Report submitted");
+		sweetAlert("Report Submitted");
 		hp.value = "";
 		comment.value = "";
 		Router.go('/');

@@ -50,7 +50,7 @@ UI.registerHelper('MeteorUserEmail',function(){
 
 UI.registerHelper("FacebookUserId",function(){
 	var user = Meteor.user();
-	console.log(user)
+	//console.log(user)
 	/*
 	if (user.services.facebook.id){
 		console.log(user.services.facebook.id);

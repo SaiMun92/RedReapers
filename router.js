@@ -20,3 +20,7 @@ Router.route('/usersystem',function(){
 Router.route('/claimrole',function(){
 	this.render('claimrole');
 });
+
+Router.route('/subscribe',function(){
+	this.render('subscribe');
+});
