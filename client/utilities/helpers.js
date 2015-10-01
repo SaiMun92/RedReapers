@@ -1,22 +1,23 @@
+/** Global Helpers for entire client-side application */
+
+
+/** @Helper Renders time to template*/
 UI.registerHelper('timeNow', function(datetime) {
     Session.get('time');
     return moment(datetime);
 });
 
-setInterval(function() {
-    Session.set("time", new Date())
-}, 1000); //Every second. Okay this is fancy, but not sure if computationally wasteful LOL
-
+/** @Helper Marker Session variable */
 UI.registerHelper('CurMarker', function(option){
 	return Session.get("CurMarker")[option];
 });
 
-//Universal Session Template Helper
+/** @Helper returns Session var given key */
 UI.registerHelper("GetSession",function(key){
 	return Session.get(key);
 });
 
-//Helper to return correct colour for incident panel
+/** @Helper returns bootstrap div class based on status */
 UI.registerHelper("incidentStatusColor",function(status){
 	console.log(status);
 	var incidentStatusDict = {
@@ -27,17 +28,19 @@ UI.registerHelper("incidentStatusColor",function(status){
 	};
 	var color = incidentStatusDict[status];
 	if (color){
-		//console.log(color);
-		return color;}
+		return color;
+	}
 	else{
 		return 'default';
 	}
 });
 
+/** @Helper Template equality check */
 UI.registerHelper('equals', function (a, b) {
   return a === b;
 });
 
+/** @Helper Returns Meteor user's email */
 UI.registerHelper('MeteorUserEmail',function(){
 	var user = Meteor.user();
 	if (user.emails[0].address){
@@ -48,18 +51,3 @@ UI.registerHelper('MeteorUserEmail',function(){
 
 });
 
-UI.registerHelper("FacebookUserId",function(){
-	var user = Meteor.user();
-	//console.log(user)
-	/*
-	if (user.services.facebook.id){
-		console.log(user.services.facebook.id);
-		return user.services.facebook.id;
-	}
-	else{
-		return false;
-	}*/
-	return false;
-
-
-});

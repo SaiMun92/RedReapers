@@ -1,37 +1,7 @@
-/*
-
-Server side methods for farming haze data
-Cron jobs will autopopulate local collection with haze data
-Alternatively, we could just make an API call whenever we need haze data,
-but collecting them would be better because API calls do not allow calls into the past.
-
-Current issues - When server down for whatever reason, cron jobs don't run. should look into spinning off another
-instance of server to handle crawling. But whatever, for now. 
-
--Using NEA's Weather API
-*/
-
-
-//Adds an hourly cron job of collecting hourly PSI-levels
-SyncedCron.add({
-  name: 'Collecting hourly PSI-levels from NEA-API',
-  schedule: function(parser) {
-    // parser is a later.parse object
-    return parser.text('every 1 hours');
-  },
-  job: function() {
-    crawlPSI();
-  }
-});
-
-
-/*
-crawlPSI function
-==================
-1) CrawlPSI makes a call to NEA's API. 
-2) Retrieves XML data, parses it, formarts it to JSON. (conversion makes it super messy tho)
-3) Further cleaning is done, packaged into a nice little JSON object
-4) inserted intocollections. 
+/** 
+*  @function (CrawlPSI makes a call to NEA's API.)
+*  Retrieves XML data, parses it, formats it to JSON. (conversion makes it super messy tho)
+*  Further cleaning is done, packaged into a nice little JSON object inserted intocollections. 
 */
 
 crawlPSI = function(){
@@ -70,23 +40,20 @@ crawlPSI = function(){
 				newreadinglist.push(reading);
 			}
 			
-			PSIrecord['reading'] = newreadinglist;
-			//Parsing and tracing this messy json format officially caused a headache 
+			PSIrecord['reading'] = newreadinglist; 
 			
-
 			//One record per crawl, all regions in one collection.
 			//Is this better? I think so. for now. I hope :) 
 			AllRegionsRecord.push(PSIrecord);
 			AllRegionsRecord['timestamp'] = timestamp._d;
-
-			
 			}
 			PSI.insert(AllRegionsRecord);		//Insert PSIrecord into Mongo
 	
-									});
-	
+									});	
 };
 
+
+/** @function - Utility Function, for testing DO NOT RUN in production*/
 convertDates = function(){
 	var allPSI = PSI.find().fetch();
 	for(var i=0;i<allPSI.length;i++){
@@ -94,13 +61,12 @@ convertDates = function(){
 		var a = moment(allPSI[i].timestamp, "YYYYMMDDHHmmss");
 		console.log(a._d);
 		PSI.update(allPSI[i]._id,{$set:{timestamp:a._d}});
-
 	}
 
 },
 
-//This is a one-off function. Do not run this. 
-//A utility method for internal usage
+
+/** @function - Utility Function, for testing DO NOT RUN in production*/
 appendTimestamp = function(){
 	var cursor = PSI.find();
 	cursor.forEach(function(doc){
@@ -111,9 +77,7 @@ appendTimestamp = function(){
 }
 
 
-
-SyncedCron.start();
-
+/** @function - Utility Function, for testing DO NOT RUN in production*/
 Meteor.startup(function() {
 	//this should be run periodically, but this startup function here is to test the functionality
 	//In production, please use SyncedCron.start()

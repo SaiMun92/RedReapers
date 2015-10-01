@@ -1,0 +1,44 @@
+<!--View component to display PSI-->
+
+<template name="psiVIEW">
+<div class="panel panel-default">
+<div class="panel-heading">
+
+<h4> Current Haze Status </h4></div>
+<div class="panel-body">
+<div class="text-center">
+<div class="row">
+<div class="col-lg-2 col-lg-offset-1"> Central  <br> {{latestPSI.[0].[2].reading.[0].value}} </div>
+<div class="col-lg-2"> North  <br> {{latestPSI.[0].[0].reading.[0].value}} </div>
+<div class="col-lg-2"> East  <br> {{latestPSI.[0].[3].reading.[0].value}} </div>
+<div class="col-lg-2"> West <br> {{latestPSI.[0].[4].reading.[0].value}} </div>
+<div class="col-lg-2"> South <br> {{latestPSI.[0].[5].reading.[0].value}} </div>
+</div>
+<hr>
+<small> Last update: {{moFormat latestPSI.[0].[0].timestamp 'longDatewithtime'}} </small><br>
+
+<button class="btn btn-default btn-transparent btn-sm pull-center" id="closePSI"> <i class="fa fa-remove"> </i> Close </button>
+
+<button class="btn btn-default btn-transparent btn-sm pull-center"> <i class="fa fa-area-chart"></i> Statistics</button>
+<!--National Reporting Center- {{latestPSI.[0].[1].reading.[0].value}} <br>-->
+<br>
+</div>
+</div>
+
+
+<!--This should be kept for detailed analytics-->
+<!--
+{{latestPSI.[0].[0].reading.[1].type}} - {{latestPSI.[0].[0].reading.[1].value}} <br>
+{{latestPSI.[0].[0].reading.[2].type}} - {{latestPSI.[0].[0].reading.[2].value}} <br>
+{{latestPSI.[0].[0].reading.[3].type}} - {{latestPSI.[0].[0].reading.[3].value}} <br>
+{{latestPSI.[0].[0].reading.[4].type}} - {{latestPSI.[0].[0].reading.[4].value}} <br>
+{{latestPSI.[0].[0].reading.[5].type}}- {{latestPSI.[0].[0].reading.[5].value}} <br>
+{{latestPSI.[0].[0].reading.[6].type}} - {{latestPSI.[0].[0].reading.[6].value}} <br>-->
+
+
+<!--
+<b> North: </b> {{northReadings.reading.[0].value}}
+{{northReadings.timestamp}}-->
+
+</div>
+</template>

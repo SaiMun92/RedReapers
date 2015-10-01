@@ -1,3 +1,8 @@
+/**
+ * Contains Methods for Server side CRUD operations
+ * Should never allow CRUD operations on Client-side only
+*/
+
 Meteor.methods({
     
 	'insertIncident':function(incidentObj){

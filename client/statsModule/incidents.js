@@ -1,49 +1,8 @@
-//Should refactor to somewhere else
-mo.configure({
-  formatTokens: {
-    'shortDate': 'D MMM YY', //3 Jan 15
-    'longDate': 'Do [of] MMMM[,] YYYY', //3rd of January, 2015
-    'longDatewithtime': 'Do [of] MMMM[,] YYYY HH:mm:ss'
-  }
-});
-
-//Currently Stats includes several templates including incident views
-//Will refactor into seperate files in the future when stuff gets bloated
-
-Template.stats.helpers({
-
-
-	'IncidentCount':function(){
-		var now = moment();
-		var startoftoday = moment().startOf('day');
-		return Incidents.find({'reportedTime':{ $gte : startoftoday._d, $lt: now._d }}).count();
-	},
-
-	'UnresolvedIncidents':function(){
-		return Incidents.find({'status':'unresolved'}).count();
-	},
-	'UrgentIncidents':function(){
-		return Incidents.find({'status':'urgent'}).count();
-	}
-
-});
-
-Template.stats.events({
-
-	'click #showincidents':function(){
-		var incidentview = Session.get('incidentview');
-		Session.set("incidentview",!incidentview);
-		Session.set("SingleIncidentView",false); //So Single Incidents don't show up!
-	}
-})
-
 
 Template.incidentview.helpers({
 
 	'Incidents':function(){
-
-
-	   	//If there is a single target incident
+		//Used when user focuses on a single incident
    	 	if(Session.get('SingleIncidentView')){
    			return Incidents.find({'_id':Session.get('SingleIncidentView')}).fetch();
    	}
@@ -68,12 +27,10 @@ Template.incidentview.events({
 		panorama.setVisible(false);
 		GoogleMaps.maps.map.instance.setZoom(15);
 		GoogleMaps.maps.map.instance.setCenter(this.location);
-		//console.log(this.location);
 			},
 
 	'click #showpanorama':function(){
 
-		//My vibe says there is a better way to do this
 		GoogleMaps.maps.map.instance.setStreetView(panorama);
 		panorama.setPosition(this.location);
 		panorama.setPov(({
@@ -95,7 +52,6 @@ Template.incidentview.events({
 		console.log("Text:"+text);
 		IncidentSearch.search("");
 		IncidentSearch.search(text);
-
 	},
 
 	'click #markresolved':function(){
@@ -105,44 +61,13 @@ Template.incidentview.events({
 		console.log("Text:"+text);
 		IncidentSearch.search("");
 		IncidentSearch.search(text);
-
 	},
+
 	'click #markurgent':function(){
 		Meteor.call('markStatus',this._id,'urgent');
 		var text = IncidentSearch.getCurrentQuery();
 		console.log("Text:"+text);
 		IncidentSearch.search("");
 		IncidentSearch.search(text);
-
 	}
-
-		
-
-});
-
-
-
-Template.psiVIEW.helpers({
-
-
-	'latestPSI':function(){
-		var latestReading = PSI.find().fetch().reverse();
-		return latestReading;
-
-	},
-
-
-	
-
-
-});
-
-Template.psiVIEW.events({
-
-	'click #closePSI':function(){
-		Session.set("psiView",false);
-	}
-
-
-
 });

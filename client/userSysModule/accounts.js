@@ -5,8 +5,6 @@ var myLogoutFunc = function(){
 };
 
 var mySubmitFunc = function(error, state){
-
-
   //Simple Redirects to home
   if (!error) {
     if (state === "signIn") {
@@ -20,12 +18,8 @@ var mySubmitFunc = function(error, state){
 };
 
 var myPreSubmitFunc = function(){
-
   Router.go('/');
 };
-
-
-
 
 AccountsTemplates.configure({
     // Behavior

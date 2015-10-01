@@ -1,0 +1,58 @@
+<!--
+Statistics View Component
+Mainly contains daily stats for operators / welcome message for public users
+Contains
+1) Haze / PSI compoent
+2) Incident View component
+3) TODO: Weather Component
+-->
+<template name="stats">
+
+<div class="panel panel-default">
+<h5> {{moFormat timeNow 'longDatewithtime'}} </h5>
+
+{{#if isInRole 'operator'}}
+<h6> Welcome Operator! </h6>
+<small> Number of incidents today </small>
+<div class="col-lg-6 col-lg-offset-3 incident-count">
+ {{IncidentCount}} 
+ </div>
+ <br>
+ <br>
+ <br>
+<!--Number of Urgent Incidents - {{UrgentIncidents}} <br>-->
+{{else}}
+<div class="col-lg-10 col-lg-offset-1">
+<div class="well">
+<p> Welcome! Member of the public. Our CMS provides real-time
+up to date information regardings incidents happening around country.
+Our mission is to keep Singapore safe! Please report incidents to us at
+<i> +65 67343298 </i> </p>
+</div>
+</div>
+
+{{/if}}
+
+<br>
+<br>
+<a href="{{pathFor 'report'}}"><button class="btn btn-primary"><i class="fa fa-exclamation-triangle"></i> Report incident </button></a>
+<button class="btn btn-default" id="showincidents"><i class="fa fa-history"></i>
+{{#if GetSession 'incidentview'}} Hide {{else}} Show {{/if}} Incidents </button>
+
+<br>
+<br>
+</div>
+
+{{#if GetSession 'psiView'}}
+{{>psiVIEW}}
+{{/if}}
+
+
+
+</template>
+
+
+
+
+
+

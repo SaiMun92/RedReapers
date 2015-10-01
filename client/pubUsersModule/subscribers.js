@@ -28,7 +28,7 @@ Template.subscribe.events({
 		}
 		Meteor.call('insertSubscriber',NewSubscriber);
 		sweetAlert("You have subscribed to our awesome incident reporting system!");
-		email.value ="";
+		email.value="";
 		contact.value="";
 
 
