@@ -5,10 +5,11 @@
 
 Template.stats.helpers({
 
-	'IncidentCount':function(){
-		var now = moment();
-		var startoftoday = moment().startOf('day');
-		return Incidents.find({'reportedTime':{ $gte : startoftoday._d, $lt: now._d }}).count();
+	'IncidentsToday':function(){
+		var now = new Date();
+		var startoftoday = moment().startOf('day').toDate();
+		//return Incidents.find({'reportedTime':{ $gte : d, $lte: now }}).fetch();
+		return Incidents.find().fetch();
 	},
 
 	'UnresolvedIncidents':function(){

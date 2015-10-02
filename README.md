@@ -1,6 +1,7 @@
 # RedReapers [CMS]
 Red Reapers CMS (or Crisis Management System) allows incident reporting and crisis management
-from a top-level view. Still under development for a school project. 
+from a top-level view. Still under development for a school project. Red Reapers is developed
+in Singapore's context. 
 
 ### Current Features
 1. Incident reporting (standard CRUD app)
@@ -17,11 +18,16 @@ from a top-level view. Still under development for a school project.
 2. Search & Filters
 3. Data Visualisation Module
 4. Data Analytics Module
+5. Live tracker (??)
 
 LOL what else do I need? 
 
 #### Usage
-Will fill this in someday :) Just remember to get your own keys. FB/Twitter/NEA/LTA Api Creds are omitted on purpose! 
+Will fill this in someday :) Just remember to get your own API keys. 
+FB/Twitter/NEA/LTA Api Creds are omitted on purpose! 
 
-### Developers
+#### Developers
 Tay Yi (ytay2@e.ntu.edu.sg)
+
+
+

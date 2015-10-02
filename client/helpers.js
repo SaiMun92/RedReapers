@@ -51,3 +51,12 @@ UI.registerHelper('MeteorUserEmail',function(){
 
 });
 
+UI.registerHelper('ListLength',function(List){
+
+	if (List.length){
+		return List.length
+	}
+	else{
+			return 0;
+		}
+});
