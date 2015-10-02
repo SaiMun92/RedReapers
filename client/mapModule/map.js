@@ -53,7 +53,7 @@ Template.map.onCreated(function() {
             
                console.log("Generating markers for incidents");
                 var incidents = Incidents.find().fetch();
-
+                  console.log(incidents);
                 _.each(incidents, function(incident) {
                     var lat = incident['location']['lat'];
                     var lng = incident['location']['lng'];

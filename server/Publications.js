@@ -5,6 +5,10 @@ Meteor.publish('All-Incidents',function(){
 	return Incidents.find();
 });
 
+Meteor.publish("PriorityIncidents",function(){
+  return Incidents.find({'type':{$nin: ['Road Work']}});
+});
+
 Meteor.publish('All-Haze',function(){
 	 var today = moment();
 	 var yesterday = today.add(-1,"days");
