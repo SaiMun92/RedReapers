@@ -1,14 +1,16 @@
+/* This file is not committed to Git */
+
+
 Meteor.startup(function() {
 
   console.log("Initialising Service Configurations..");
-  /*
-   ServiceConfiguration.configurations.remove({
-  service: "facebook"
-});
-   ServiceConfiguration.configurations.remove({
-  service: "twitter"
-});*/
-   
+    /*
+     ServiceConfiguration.configurations.remove({
+    service: "facebook"
+  });
+     ServiceConfiguration.configurations.remove({
+    service: "twitter"
+  });*/
    
     // Add Facebook configuration entry
     ServiceConfiguration.configurations.update(

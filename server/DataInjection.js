@@ -3,9 +3,11 @@
  *  Runs only if no incidents
  *  Injects dummy data into db
  *  Simulates test data
+ *	@Author - Tay Yi 
  */
 
 Meteor.startup(function(){
+	/*
 	if (Incidents.find().count()==0){	
 	//No Incidents found, auto populate database with test data
 		console.log("Injecting Dummy Data");
@@ -42,7 +44,8 @@ Meteor.startup(function(){
 			'reportedTime':moment()._d,
 			'status':'urgent'
 		});
-	}
+
+	}*/
 
 	if(Subscribers.find().count()==0){
 		//Inject Subscribers for subscribe test

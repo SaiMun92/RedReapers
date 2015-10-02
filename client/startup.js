@@ -10,13 +10,13 @@
     GoogleMaps.load();
 
     //Client Side Subscriptions
-    Meteor.subscribe('All-Incidents');
+    Meteor.subscribe('PriorityIncidents');
     Meteor.subscribe("All-Haze");  
     Meteor.subscribe('userData');
 
-	//Session Defaults
-	Session.setDefault("incidentview",false);
-	Session.setDefault("psiView",true);
+  	//Session Defaults
+  	Session.setDefault("incidentview",false);
+  	Session.setDefault("psiView",true);
 
   });
 

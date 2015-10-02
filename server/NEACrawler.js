@@ -79,10 +79,12 @@ appendTimestamp = function(){
 
 /** @function - Utility Function, for testing DO NOT RUN in production*/
 Meteor.startup(function() {
-	//this should be run periodically, but this startup function here is to test the functionality
-	//In production, please use SyncedCron.start()
-		//crawlPSI();
-		//convertDates();
-		//appendTimestamp();
- 
+	/**
+	this should be run periodically, but this startup function here is to test the functionality
+	in production, please use SyncedCron.start()
+	*/
+
+	//crawlPSI();
+	//convertDates();
+	//appendTimestamp();
 });

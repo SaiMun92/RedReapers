@@ -12,7 +12,6 @@ Meteor.publish('All-Haze',function(){
 	return PSI.find({"timestamp" : { $gte : yesterday._d }});
 });
 
-
 Meteor.publish("userData", function () {
   if (this.userId) {
     return Meteor.users.find({_id: this.userId},

@@ -21,7 +21,6 @@ Template.stats.helpers({
 });
 
 Template.stats.events({
-
 	'click #showincidents':function(){
 		var incidentview = Session.get('incidentview');
 		Session.set("incidentview",!incidentview);

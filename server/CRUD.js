@@ -1,6 +1,7 @@
 /**
  * Contains Methods for Server side CRUD operations
  * Should never allow CRUD operations on Client-side only
+ * @Author - Tay Yi 
 */
 
 Meteor.methods({

@@ -1,3 +1,4 @@
 .deploy
 server/service-configuration.js
+server/Credentials.js
 

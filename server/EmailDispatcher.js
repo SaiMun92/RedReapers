@@ -1,4 +1,6 @@
-/** Contains a collection of methods for email generation */
+/** Contains a collection of methods for email generation
+@Author - Tay Yi 
+ */
 
 Meteor.methods({
 

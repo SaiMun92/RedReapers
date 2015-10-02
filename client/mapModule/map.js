@@ -41,6 +41,9 @@ Template.map.helpers({
   }
 });
 
+
+
+
 Template.map.onCreated(function() {  
   GoogleMaps.ready('map', function(map) {
     panorama = GoogleMaps.maps.map.instance.getStreetView();
@@ -52,29 +55,32 @@ Template.map.onCreated(function() {
                 var incidents = Incidents.find().fetch();
 
                 _.each(incidents, function(incident) {
-                    var lat = incident.location.lat;
-                    var lng = incident.location.lng;
-                    console.log(lat + "," + lng);
+                    var lat = incident['location']['lat'];
+                    var lng = incident['location']['lng'];
 
                     if(lat && lng){
                     var marker = new google.maps.Marker({
                         position: new google.maps.LatLng(lat, lng),
                         clickable:true,
                         animation: google.maps.Animation.DROP,
-                        title:incident.type,
-                        map: GoogleMaps.maps.map.instance
+                        title:incident['type'],
+                        map: GoogleMaps.maps.map.instance,
                     });
-
-                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/'+iconUrlDict[incident.status]+'.png');
-                    marker.addListener('click',function(){
-                      //Zooms into marker location! 
-                      var loc = new google.maps.LatLng(lat, lng)
-                      map.instance.setZoom(15);
-                      map.instance.setCenter(loc);
+                    if(incident['status']!=undefined){
+                      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/'+iconUrlDict[incident.status]+'.png');
+                    }
+                  
                     
-                    //SingleIncidentView now merged with incidentviews
-                    Session.set("SingleIncidentView",incident._id);
-                    Session.set("incidentview",true); 
+                    marker.addListener('click',function(){
+                        //Zooms into marker location! 
+                        console.log("click!");
+                        var loc = new google.maps.LatLng(lat, lng)
+                        map.instance.setZoom(15);
+                        map.instance.setCenter(loc);
+                      
+                      //SingleIncidentView now merged with incidentviews
+                      Session.set("SingleIncidentView",incident._id);
+                      Session.set("incidentview",true); 
 
                         });
                        
