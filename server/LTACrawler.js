@@ -27,7 +27,7 @@ Meteor.methods({
 				console.log(error);
 			}
 			else{
-				console.log(response.data['d']);
+				//console.log(response.data['d']);
 				_.each(response.data['d'],function(data){
 					var incident = {
 							'location':{'lat':data['Latitude'],'lng':data['Longitude']},
@@ -63,5 +63,23 @@ Meteor.methods({
 Meteor.startup(function(){
 
 	//Meteor.call('getTrafficIncidents');
+	//convertDatesToObjects();
 
 });
+
+convertDatesToObjects = function(){
+
+	var incidents = Incidents.find().fetch();
+
+	_.each(incidents,function(incident,index){
+		date = incident['reportedTime'];
+		console.log(date);
+		date = new Date(date);
+		console.log(date);
+		incident['reportedTime']=date;
+		//update the whole object
+		Incidents.update(incident._id,incident);
+	});
+
+
+}
