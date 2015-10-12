@@ -1,0 +1,47 @@
+<template name="subscribe">
+<br>
+<br>
+<div class="col-lg-8 col-lg-offset-2 text-center">
+
+
+<h1> Subscribe to notifications </h1>
+
+<div class="well">
+<p> <i class="fa fa-rss"></i> Get the latest incident reports from Singapore, customised and tailored to your own needs! 
+</p>
+
+</div>
+<form>
+<div class="col-lg-6 col-lg-offset-3">
+  {{#if UserEmail}} <div class="alert alert-success">
+<i class="fa fa-check-circle-o"></i>
+   You are already logged in! Please change subscription email if you want emails to go to 
+  another inbox </div> {{/if}}
+ <div class="form-group">
+
+    <label for="exampleInputEmail1">Email address:</label>
+    <input type="email" class="form-control" id="email" placeholder="Email" value="{{#if UserEmail}} {{UserEmail}} {{/if}}">
+  </div>
+
+  
+   <div class="form-group">
+    <label for="exampleInputEmail1">Contact number:</label>
+    <input type="number" class="form-control" id="contact" placeholder="Phone number">
+  </div>
+
+  <div class="well">
+ <i class="fa fa-envelope"></i>  You will receive notifications for whatever platform you gave us your contact for! 
+    
+    </div>
+<br>
+<button class="btn btn-success" id="subscribe"> <i class="fa fa-check-circle-o"></i> Subscribe </button>
+</div>
+<br>
+
+
+
+</form>
+
+</div>
+
+</template>

@@ -1,0 +1,78 @@
+<template name="incidentview">
+<div class="text-center">
+{{> autoformModals}}
+
+<h3> Latest Incident Reports </h3>
+<div class="form-group">
+<input type="text" class="form-control" id="search-box" placeholder="Search">
+</div>
+{{#if Incidents}}
+<div class="panel-group">
+{{#each Incidents}}
+
+<div class="panel panel-{{incidentStatusColor status}}">
+<div class="panel-heading">
+
+
+{{#if equals status 'resolved'}}<i class="fa fa-check"></i>{{/if}}
+{{#if equals status 'urgent'}}<i class="fa fa-exclamation-circle"></i>{{/if}}
+{{#if equals status 'verified'}}<i class="fa fa-dot-circle-o"></i>{{/if}}
+ {{type}} 
+</div>
+<div class="panel-body">
+
+
+<p> {{comment}}</p>
+
+<small>{{moFormat reportedTime 'longDatewithtime'}}</small>
+
+</div>
+<div class="panel-footer">
+<!--
+<button class="btn btn-default" id="showlocation"><i class="fa fa-map-marker"></i> Show Location </button>
+<button class="btn btn-default" id="showpanorama"><i class="fa fa-map-marker"></i> Street View</button>-->
+<div class="btn-group" role="group" aria-label="...">
+<div class="btn-group">
+  <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <i class="fa fa-eye"></i> View
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#" id="showlocation"><i class="fa fa-map-marker"></i> &nbsp; Map View</a></li>
+    <li><a href="#" id="showpanorama"><i class="fa fa-location-arrow"></i>&nbsp; Street View</a></li>
+  </ul>
+</div>
+  {{#if isInRole 'operator'}}
+<div class="btn-group">
+  <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <i class="fa fa-eye"></i> Status
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    {{#unless equals status 'verified'}}
+    <li><a href="#" id="markverified"><i class="fa fa-check-circle-o"></i>&nbsp;Mark Verified</a></li>
+    {{/unless}}
+    {{#unless equals status 'resolved'}}
+    <li><a href="#" id="markresolved"><i class="fa fa-location-arrow"></i>&nbsp;Mark Resolved</a></li>
+    {{/unless}}
+    {{#unless equals status 'urgent'}}
+      <li><a href="#" id="markurgent"><i class="fa fa-exclamation-circle"></i>&nbsp;Mark Urgent</a></li>
+      {{/unless}}
+  </ul>
+</div>
+
+<button class="btn btn-default btn-sm" id="takeaction"><i class="fa fa-bolt"></i> Take action </button>
+{{/if}}
+
+</div>
+</div>
+</div>
+
+
+{{/each}}
+</div>
+
+{{/if}}
+</div>
+
+</template>

@@ -1,10 +1,23 @@
+/**
+ * Startup Functionality for Client-side
+ * Loads google maps
+ * Subscribe to relevant data from wire
+ * Set Sessions to default
+ */
+
   Meteor.startup(function() {
+
     GoogleMaps.load();
-    Meteor.subscribe('All-Incidents');
+
+    //Client Side Subscriptions
+    Meteor.subscribe("PriorityIncidents");
     Meteor.subscribe("All-Haze");  
     Meteor.subscribe('userData');
+
+  	//Session Defaults
+  	Session.setDefault("incidentview",false);
+  	Session.setDefault("psiView",true);
+
   });
 
-//Session Defaults
-Session.setDefault("incidentview",false);
-Session.setDefault("psiView",true);
+

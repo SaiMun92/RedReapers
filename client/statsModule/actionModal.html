@@ -1,0 +1,68 @@
+<!--ACTION MODAL FOR TAKE ACTION BUTTON -->
+
+<template name="actionModal">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header text-center">
+                    <h4 class="modal-title">Case Id: {{_id}} - {{type}}</h4>
+                </div>
+
+                <div class="modal-body">
+
+<div class='well text-center'>
+<p>  {{comment}}<br> <i> reported by:{{contact}}</i> </p>
+
+
+</div>              
+
+<div class="row text-center">
+<div class="col-lg-4">
+
+<button class="btn btn-default btn-sm fixed-button" id="sendemail">
+<i class="fa fa-envelope-o fa-3x"></i> <br>
+Notify via Email </button>
+
+</div>
+
+<div class="col-lg-4">
+
+<button class="btn btn-default btn-sm fixed-button">
+<i class="fa fa-feed fa-3x"></i> <br>
+Notify via SMS</button>
+
+</div>
+<div class="col-lg-4">
+
+<button class="btn btn-default btn-sm fixed-button">
+<i class="fa fa-building fa-3x"></i> <br>
+Notify Authorities only</button>
+
+</div>
+<!--
+<div class="col-lg-3">
+
+<button class="btn btn-default btn-sm fixed-button">
+<i class="fa fa-ambulance fa-3x"></i> <br>
+<small> Alert Police/Ambulance </small></button>
+
+
+</div>-->
+</div>
+
+
+ </div>
+
+               
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+           
+        </div>
+    </div>
+    </div>
+</template>
+
